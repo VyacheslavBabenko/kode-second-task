@@ -8,18 +8,17 @@ export default function MainPage() {
   const [cards, setCards] = useState([]);
   const [types, setTypes] = useState([]);
   const [subtypes, setSubtypes] = useState([]);
-  const [selectedCards, setSelectedCards] = useState("");
-  const [selectedFormatCards, setSelectedFormatCards] = useState("");
+  const [selectedCards, setSelectedCards] = useState([]);
 
-  const [cardsOnPage, setCardsOnPage] = useState(5);
+  const [cardsOnPage] = useState(5);
   const [startFrom, setStartFrom] = useState(0);
 
   const getCards = () => {
     fetch("https://api.pokemontcg.io/v1/cards")
       .then(response => response.json())
-      .then(cards => {
-        setCards(cards.cards);
-        console.log("cards: ", cards.cards);
+      .then(response => {
+        setCards(response.cards);
+        setSelectedCards(response.cards);
       });
   };
 
@@ -66,7 +65,7 @@ export default function MainPage() {
     let selCards = [];
     cards.forEach(card => {
       if (card.types) {
-        card.types.find(type => {
+        card.types.forEach(type => {
           if (type == inputValue) {
             selCards.push(card);
           }
@@ -75,8 +74,6 @@ export default function MainPage() {
     });
 
     setSelectedCards(selCards);
-
-    setSelectedFormatCards(selCards);
     toPage(0);
     return inputValue;
   };
@@ -90,22 +87,12 @@ export default function MainPage() {
       }
     });
     setSelectedCards(selCards);
-    setSelectedFormatCards(selCards);
     return inputValue;
   };
 
-  const toPage = page => {
-    // debugger;
-    console.log("event: ", page);
+  function toPage(page) {
     setStartFrom(page * cardsOnPage);
-    if (selectedCards) {
-      setSelectedFormatCards(selectedCards);
-    }
-    // console.log("selectedCards: ", selectedCards);
-    // let temp = selectedCards.slice(startFrom, startFrom + cardsOnPage);
-    // setSelectedFormatCards(temp);
-    // console.log("selectedCards: ", selectedCards);
-  };
+  }
 
   return (
     <div className="main-page">
@@ -156,13 +143,13 @@ export default function MainPage() {
         </aside>
 
         <main>
-          {selectedFormatCards.length
-            ? selectedFormatCards
+          {selectedCards.length
+            ? selectedCards
                 .slice(startFrom, startFrom + cardsOnPage)
                 .map(card => {
                   return <Card card={card} key={card.id}></Card>;
                 })
-            : "Выберите типы"}
+            : "Нет данных"}
         </main>
       </div>
     </div>

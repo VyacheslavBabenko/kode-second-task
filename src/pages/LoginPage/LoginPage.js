@@ -9,9 +9,9 @@ export default function LoginPage() {
   const email = useInput("", { isEmpty: true, minLength: 3, isEmail: true });
   const password = useInput("", { isEmpty: true, minLength: 5 });
   const loginHandler = () => {
-    // if (email.value === "kode@kode.ru" && password.value === "Enk0deng")
-    console.log("auth..");
-    history.push("/otp");
+    if (email.value === "kode@kode.ru" && password.value === "Enk0deng") {
+      history.push("/otp");
+    }
   };
 
   return (

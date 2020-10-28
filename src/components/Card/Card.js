@@ -5,7 +5,6 @@ export default function Card(props) {
   const history = useHistory();
 
   const openFullInfo = card => {
-    console.log("card: ", card);
     history.push(`/card?${card.id}`);
   };
 

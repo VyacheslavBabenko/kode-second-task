@@ -8,7 +8,6 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    // <LoginPage></LoginPage>
     <Router>
       <Switch>
         <Route path="/otp">

@@ -7,19 +7,19 @@ export default function CardInfo() {
   const history = useHistory();
   const [card, setCard] = useState({});
 
-  useEffect(() => {
-    getCardInfo();
-  }, []);
-
   const getCardInfo = () => {
     let id = history.location.search.slice(1);
-    console.log("id: ", id);
+
     fetch(`https://api.pokemontcg.io/v1/cards?id=${id}`)
       .then(response => response.json())
       .then(card => {
         setCard(card.cards[0]);
       });
   };
+
+  useEffect(() => {
+    getCardInfo();
+  }, []);
 
   return (
     <div className="card-info">
