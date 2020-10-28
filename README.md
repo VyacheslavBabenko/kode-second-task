@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Pokemon cards
 
 Писал на реакте впервые, поэтому разбирался с ним в процессе выполнения задания.
 
