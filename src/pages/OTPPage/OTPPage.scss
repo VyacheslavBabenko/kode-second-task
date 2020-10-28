@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .otp-form {
+    width: 396px;
+    height: 426px;
+    background: #fafafa;
+    padding: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .code {
+      width: 278px;
+      height: 68px;
+      background: #ececec;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+        color: #a0a0a0;
+      }
+
+      input {
+        background: none;
+        border: none;
+        height: 100%;
+      }
+    }
+
+    .enter-btn {
+      button {
+        cursor: pointer;
+
+        &:disabled {
+          cursor: default;
+        }
+      }
+    }
+  }
+}

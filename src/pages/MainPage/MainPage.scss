@@ -1,0 +1,66 @@
+.content {
+  display: flex;
+  aside {
+    background: #fafafa;
+    height: 100vh;
+    width: 30%;
+    padding: 70px 40px 0px 40px;
+
+    .select__control {
+      margin-top: 40px;
+    }
+  }
+
+  main {
+    width: 70%;
+    padding: 100px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .card {
+      width: 217px;
+      height: 217px;
+      background: #f3f3f3;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-right: 50px;
+      margin-bottom: 50px;
+      cursor: pointer;
+
+      &:hover {
+        background: #c4c4c4;
+      }
+
+      img {
+        width: 189px;
+        height: 133px;
+      }
+
+      .name,
+      .artist {
+        font-size: 14px;
+        line-height: 14px;
+        color: #000000;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+}

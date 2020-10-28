@@ -1,0 +1,170 @@
+import React, { useEffect, useState } from "react";
+import "./MainPage.scss";
+import Header from "./../../components/Header/Header.js";
+import Select from "react-select";
+import Card from "../../components/Card/Card";
+
+export default function MainPage() {
+  const [cards, setCards] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [subtypes, setSubtypes] = useState([]);
+  const [selectedCards, setSelectedCards] = useState("");
+  const [selectedFormatCards, setSelectedFormatCards] = useState("");
+
+  const [cardsOnPage, setCardsOnPage] = useState(5);
+  const [startFrom, setStartFrom] = useState(0);
+
+  const getCards = () => {
+    fetch("https://api.pokemontcg.io/v1/cards")
+      .then(response => response.json())
+      .then(cards => {
+        setCards(cards.cards);
+        console.log("cards: ", cards.cards);
+      });
+  };
+
+  const getTypes = () => {
+    fetch("https://api.pokemontcg.io/v1/types")
+      .then(response => response.json())
+      .then(response => {
+        return response.types.map((el, index) => {
+          return {
+            value: index,
+            label: el
+          };
+        });
+      })
+      .then(types => {
+        setTypes(types);
+      });
+  };
+
+  const getSubtypes = () => {
+    fetch("https://api.pokemontcg.io/v1/subtypes")
+      .then(response => response.json())
+      .then(response => {
+        return response.subtypes.map((el, index) => {
+          return {
+            value: index,
+            label: el
+          };
+        });
+      })
+      .then(subtypes => {
+        setSubtypes(subtypes);
+      });
+  };
+
+  useEffect(() => {
+    getCards();
+    getTypes();
+    getSubtypes();
+  }, []);
+
+  const handleTypesChange = event => {
+    const inputValue = event.label.replace(/\W/g, "");
+    let selCards = [];
+    cards.forEach(card => {
+      if (card.types) {
+        card.types.find(type => {
+          if (type == inputValue) {
+            selCards.push(card);
+          }
+        });
+      }
+    });
+
+    setSelectedCards(selCards);
+
+    setSelectedFormatCards(selCards);
+    toPage(0);
+    return inputValue;
+  };
+
+  const handleSubtypesChange = event => {
+    const inputValue = event.label.replace(/\W/g, "");
+    let selCards = [];
+    cards.forEach(card => {
+      if (card.subtype && card.subtype == inputValue) {
+        selCards.push(card);
+      }
+    });
+    setSelectedCards(selCards);
+    setSelectedFormatCards(selCards);
+    return inputValue;
+  };
+
+  const toPage = page => {
+    // debugger;
+    console.log("event: ", page);
+    setStartFrom(page * cardsOnPage);
+    if (selectedCards) {
+      setSelectedFormatCards(selectedCards);
+    }
+    // console.log("selectedCards: ", selectedCards);
+    // let temp = selectedCards.slice(startFrom, startFrom + cardsOnPage);
+    // setSelectedFormatCards(temp);
+    // console.log("selectedCards: ", selectedCards);
+  };
+
+  return (
+    <div className="main-page">
+      <Header back={false} />
+      <div className="pagination">
+        {selectedCards.length
+          ? selectedCards.map((el, index) => {
+              let i;
+              if (index === 0) {
+                i = 0;
+                return (
+                  <a key={i} onClick={() => toPage(i)} href="#">
+                    {i}
+                  </a>
+                );
+              } else if ((index + 1) % 5 == 0) {
+                i = (index + 1) / 5;
+                return (
+                  <a key={i} onClick={() => toPage(i)} href="#">
+                    {i}
+                  </a>
+                );
+              }
+            })
+          : ""}
+      </div>
+
+      <div className="content">
+        <aside>
+          <div className="type">
+            <Select
+              classNamePrefix="select"
+              name="type"
+              options={types}
+              placeholder="Type"
+              onChange={handleTypesChange}
+            />
+          </div>
+          <div className="subtype">
+            <Select
+              classNamePrefix="select"
+              name="subtype"
+              placeholder="Subtype"
+              options={subtypes}
+              onChange={handleSubtypesChange}
+            />
+          </div>
+        </aside>
+
+        <main>
+          {selectedFormatCards.length
+            ? selectedFormatCards
+                .slice(startFrom, startFrom + cardsOnPage)
+                .map(card => {
+                  return <Card card={card} key={card.id}></Card>;
+                })
+            : "Выберите типы"}
+        </main>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,15 @@
+header {
+  width: 100%;
+  background: #ebebeb;
+  display: flex;
+  padding: 50px;
+
+  .back,
+  .logout {
+    cursor: pointer;
+  }
+
+  .logout {
+    margin-left: auto;
+  }
+}

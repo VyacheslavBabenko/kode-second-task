@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import LoginPage from "./pages/LoginPage/LoginPage.js";
+import OTPPage from "./pages/OTPPage/OTPPage.js";
+import MainPage from "./pages/MainPage/MainPage.js";
+import CardInfo from "./pages/CardInfo/CardInfo";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <LoginPage></LoginPage>
+    <Router>
+      <Switch>
+        <Route path="/otp">
+          <OTPPage></OTPPage>
+        </Route>
+        <Route path="/main">
+          <MainPage></MainPage>
+        </Route>
+        <Route path="/card">
+          <CardInfo></CardInfo>
+        </Route>
+        <Route path="/">
+          <LoginPage></LoginPage>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

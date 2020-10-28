@@ -1,0 +1,38 @@
+.card-info {
+  main {
+    p {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+      margin-bottom: 20px;
+    }
+
+    .upper-info {
+      margin-top: 100px;
+      padding: 50px;
+      display: flex;
+      img {
+        width: 30%;
+        height: 438px;
+      }
+
+      .properties {
+        margin-left: 100px;
+        width: 15%;
+
+        p {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 18px;
+          line-height: 21px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .bottom-info {
+      padding: 50px;
+    }
+  }
+}
