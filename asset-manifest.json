@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/kode-second-task/static/css/main.fe7cf17a.chunk.css",
+    "main.js": "/kode-second-task/static/js/main.6dda9ed2.chunk.js",
+    "main.js.map": "/kode-second-task/static/js/main.6dda9ed2.chunk.js.map",
+    "runtime-main.js": "/kode-second-task/static/js/runtime-main.bc348e84.js",
+    "runtime-main.js.map": "/kode-second-task/static/js/runtime-main.bc348e84.js.map",
+    "static/js/2.cdf2bf41.chunk.js": "/kode-second-task/static/js/2.cdf2bf41.chunk.js",
+    "static/js/2.cdf2bf41.chunk.js.map": "/kode-second-task/static/js/2.cdf2bf41.chunk.js.map",
+    "static/js/3.2933ff7d.chunk.js": "/kode-second-task/static/js/3.2933ff7d.chunk.js",
+    "static/js/3.2933ff7d.chunk.js.map": "/kode-second-task/static/js/3.2933ff7d.chunk.js.map",
+    "index.html": "/kode-second-task/index.html",
+    "static/css/main.fe7cf17a.chunk.css.map": "/kode-second-task/static/css/main.fe7cf17a.chunk.css.map",
+    "static/js/2.cdf2bf41.chunk.js.LICENSE.txt": "/kode-second-task/static/js/2.cdf2bf41.chunk.js.LICENSE.txt",
+    "static/media/enter.e003ff51.svg": "/kode-second-task/static/media/enter.e003ff51.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc348e84.js",
+    "static/js/2.cdf2bf41.chunk.js",
+    "static/css/main.fe7cf17a.chunk.css",
+    "static/js/main.6dda9ed2.chunk.js"
+  ]
+}
